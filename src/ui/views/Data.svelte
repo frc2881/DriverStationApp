@@ -152,8 +152,6 @@
       <ToolbarContent>
         <ToolbarSearch shouldFilterRows />
         <ToolbarMenu>
-          <ToolbarMenuItem on:click={ () => { isSubscriptionsModalOpen = true; } }>Edit Subscriptions</ToolbarMenuItem>
-          <ToolbarMenuItem on:click={ () => { isMetadataPropsEnabled = !isMetadataPropsEnabled; } }>{ isMetadataPropsEnabled ? "Hide": "Show" } Metadata</ToolbarMenuItem>
           <ToolbarMenuItem on:click={ () => { 
             updateNetworkTablesTopics([{ 
               id: 0, 
@@ -163,6 +161,8 @@
             }]) } }>
             { isAllTelemetryEnabled ? "Disable": "Enable" } Telemetry
           </ToolbarMenuItem>
+          <ToolbarMenuItem on:click={ () => { isMetadataPropsEnabled = !isMetadataPropsEnabled; } }>{ isMetadataPropsEnabled ? "Hide": "Show" } Metadata</ToolbarMenuItem>
+          <ToolbarMenuItem on:click={ () => { isSubscriptionsModalOpen = true; } }>Edit Subscriptions</ToolbarMenuItem>
         </ToolbarMenu>
       </ToolbarContent>
     </Toolbar>

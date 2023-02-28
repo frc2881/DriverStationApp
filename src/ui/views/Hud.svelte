@@ -29,7 +29,7 @@
   <div class="info">
     <TargetAlignment 
       robotPose={ networkTables.topics.get("/SmartDashboard/Drive/Pose") }
-      isRedAlliance={ networkTables.topics.get("/FMSInfo/IsRedAlliance") }/>
+      isRedAlliance={ networkTables.topics.get("/FMSInfo/IsRedAlliance") } />
     <MatchTime 
       matchTime={ networkTables.topics.get("/SmartDashboard/Timing/MatchTime") } />
     <Suction

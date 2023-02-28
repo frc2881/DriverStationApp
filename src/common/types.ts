@@ -86,3 +86,9 @@ export type NetworkTables = {
   isConnected: boolean;
   topics: NetworkTablesTopics;
 }
+
+export type Pose = {
+  x: number;
+  y: number;
+  rotation: number;
+}

@@ -35,7 +35,8 @@
     "@msgpack/msgpack": "^2.8.0",
     "minimist": "^1.2.8",
     "dayjs": "^1.11.7",
-    "plotly.js-basic-dist-min": "^2.18.2"
+    "plotly.js-basic-dist-min": "^2.18.2",
+    "two.js": "^0.8.10"
   },
   "devDependencies": {
     "@types/ws": "^8.5.4",
