@@ -22,18 +22,45 @@
 
   const two = new Two({
     width: 550,
-    height: 300,
+    height: 350,
     type: Two.Types.canvas,
     autostart: true
   });
 
-  const background = two.makeRectangle(0, 0, 550, 300);
-  background.fill = "#330000";
+  const robotSize = { width: 48, length: 54 };
 
-  const robotFrame = two.makeRectangle(0, 0, 48, 54);
+  const robotFrame = two.makeRectangle(0, 0, robotSize.width - 6, robotSize.length - 6);
+  robotFrame.noFill();
+  robotFrame.stroke = "#FF69B4";
+  robotFrame.linewidth = 3;
+
+  const robotArm = two.makeRectangle(0, 0, 3, 24);
+  robotArm.fill = "#FF69B4";
+  robotArm.noStroke();
+  robotArm.translation.x = 0;
+  robotArm.translation.y = 8;
+
+  const alignmentGuide = two.makePath(0, 0, 12, 12, 24);
+  alignmentGuide.fill = "#FF69B499";
+  alignmentGuide.noStroke();
+  alignmentGuide.translation.x = 0;
+  alignmentGuide.translation.y = 34;
 
   const robot = two.makeGroup([
-    robotFrame
+    robotFrame,
+    robotArm,
+    alignmentGuide
+  ]);
+
+  const barrier = two.makeRectangle(0, 0, 550, 10);
+  barrier.fill = "#FFFFFF";
+  barrier.noStroke();
+  barrier.position.x = barrier.width / 2;
+  barrier.position.y = 171 + (barrier.height / 2); 
+
+  const field = two.makeGroup([
+    barrier,
+    robot
   ]);
 
   onMount(async () => {
@@ -47,11 +74,9 @@
       [ pose.x, pose.y, pose.rotation ] = robotPose?.value as Array<number>;
     }
 
-    if (alliance === Alliance.Red) {
-      isInRange = Math.abs(zoneLimits[Alliance.Red] - pose.x) <= 1;
-    } else {
-      isInRange = Math.abs(pose.x - zoneLimits[Alliance.Blue]) <= 1;
-    }
+    robot.position.x = pose.y * 100;
+    robot.position.y = pose.x * 100 - (robotFrame.height / 2);
+    robot.rotation = pose.rotation;
 
     two.update();
   }
@@ -72,7 +97,7 @@
     .host {
       width: 550px;
       height: 300px;
-      background: red;
+      background: #FFFFFF33;
     }
   }
 </style>
